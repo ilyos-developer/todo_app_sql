@@ -51,14 +51,35 @@ class _SwitchSecurityState extends State<SwitchSecurity> {
                             authBloc.add(
                               DisableAuthEvent(value),
                             );
+                            authBloc.isSecure = true;
                           },
                         ),
                       ],
                     ),
                   ),
                 ),
-                (state is SecureSettingState)
-                    ? Container(color: Colors.red)
+                authBloc.isSecure
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Разблокировка отпесаткам пальца"),
+                            Switch(
+                              value: authBloc.isSecure,
+                              onChanged: (value) {
+                                authBloc.add(
+                                  DisableAuthEvent(value),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )
                     : SizedBox()
               ],
             ),

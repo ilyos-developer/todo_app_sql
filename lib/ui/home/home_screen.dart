@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:todo_task/bloc/home/home_bloc.dart';
-import 'package:todo_task/service/authentication.dart';
 import 'package:todo_task/ui/auth/components/switch_security_screen.dart';
 
 import 'components/task_status_screen.dart';

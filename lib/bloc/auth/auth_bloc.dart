@@ -41,10 +41,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     if (event is AuthorizationCheckEvent) {
       code = await storage.read(key: "code");
-      print("line 24 $code");
+      print("line 44 $code");
       if (code != null) {
+        isSecure = true;
         yield AuthInitial();
-        biometricCheck();
+        print(isSecure);
+        await biometricCheck();
         if (isAuthenticated) {
           yield GoHomeScreenState();
         }
@@ -53,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     }
     if (event is BiometricsCheckEvent) {
-      biometricCheck();
+      await biometricCheck();
       if (isAuthenticated) {
         yield GoHomeScreenState();
       }
